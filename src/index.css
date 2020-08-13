@@ -35,7 +35,7 @@ code {
 
 .form-control:focus {
   box-shadow: none;
-  border-color: #df4554;
+  border: 2px solid #29323c;
 }
 
 .task-list {

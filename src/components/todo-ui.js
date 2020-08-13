@@ -1,16 +1,17 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {
             Container, Row, Col, Button, Form, FormGroup, Input, Label,
             ListGroup, ListGroupItem,ListGroupItemHeading, ListGroupItemText
         } from "reactstrap";
 
-const TodoUI = ({ todos, date, deleteTask, handleSubmit }) => {
+const TodoUI = ({ todos, deleteTask }) => {
  
-  const curr_date = new Date().getDate();
-  // const taskLeft = todos.map(todo => {
-    let todoDate = new Date(date);
-    todoDate = todoDate.getDate();
-  // })
+  const [checked, setChecked] = useState(false)
+  // const curr_date = new Date().getDate();
+  
+  // let todoDate = new Date(date);
+  // todoDate = todoDate.getDate();
+  
   
   
   
@@ -29,7 +30,12 @@ const TodoUI = ({ todos, date, deleteTask, handleSubmit }) => {
                   <Form>
                     <FormGroup check>
                       <Label check>
-                        <Input type="checkbox" /> <span>{todo.task}</span>
+                        <Input
+                          type="checkbox"
+                          checked={checked}
+                          onChange={() => setChecked(!checked)}
+                        />{" "}
+                        <span>{todo.task}</span>
                       </Label>
                     </FormGroup>
                   </Form>
@@ -91,7 +97,7 @@ const TodoUI = ({ todos, date, deleteTask, handleSubmit }) => {
                       </FormGroup>
                     </Col>
                     <Col xs={2}>
-                      <Button color="danger">Delete</Button>
+                      <Button color="danger" >Delete</Button>
                     </Col>
                   </FormGroup>
                 </Form>
