@@ -28,7 +28,7 @@ code {
   text-align: center;
 }
 
-.date-time {
+.todo-item {
   display: flex;
   justify-content: space-between;
 }
@@ -47,7 +47,7 @@ code {
   justify-content: space-between; */
   padding: .75rem 0.7rem;
   color: #29323c;
-  font-size: 18px;
+  /* font-size: 18px; */
   font-weight: 600;
 }
 

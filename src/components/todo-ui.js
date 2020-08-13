@@ -1,7 +1,7 @@
 import React from 'react'
 import {
             Container, Row, Col, Button, Form, FormGroup, Input, Label,
-            ListGroup, ListGroupItem
+            ListGroup, ListGroupItem,ListGroupItemHeading, ListGroupItemText
         } from "reactstrap";
 
 const TodoUI = ({ todos, date, deleteTask, handleSubmit }) => {
@@ -15,47 +15,31 @@ const TodoUI = ({ todos, date, deleteTask, handleSubmit }) => {
   
   
 
-    const taskList = todos.length ?
-      (
-        todos.map(todo => {
+  const taskList = todos.length ?
+    (
+      todos.map(todo => {
           let newTodoDate = new Date(todo.date);
-          newTodoDate = newTodoDate.getDate();
-          if (newTodoDate === curr_date) {
+          newTodoDate = newTodoDate.toDateString();
+          // if (newTodoDate === curr_date) {
             return (
               // <div className="list-groups">
-              <ListGroupItem className="my-tasks date-time" key={todo.id}>
-                <Form>
-                  <FormGroup check>
-                    <Label check>
-                      <Input type="checkbox" /> <span>{todo.task}</span>
-                    </Label>
-                  </FormGroup>
-                </Form>
-                {/* <p>{todo.date}</p> */}
-                <p>{todo.time}</p>
+              <ListGroupItem className="my-tasks" key={todo.id}>
+                <ListGroupItemHeading>{newTodoDate}</ListGroupItemHeading>
+                <ListGroupItemText className="todo-item">
+                  <Form>
+                    <FormGroup check>
+                      <Label check>
+                        <Input type="checkbox" /> <span>{todo.task}</span>
+                      </Label>
+                    </FormGroup>
+                  </Form>
+                  {/* <p>{todo.date}</p> */}
+                  <p>{todo.time}</p>
+                </ListGroupItemText>
               </ListGroupItem>
               // </div>
             );
-          }
-          
-          if (newTodoDate !== curr_date) {
-            return (
-              // <div className="list-groups">
-              <ListGroupItem className="my-tasks date-time" key={todo.id}>
-                <Form>
-                  <FormGroup check>
-                    <Label check>
-                      <Input type="checkbox" /> <span>{todo.task}</span>
-                    </Label>
-                  </FormGroup>
-                </Form>
-                {/* <p>{todo.date}</p> */}
-                <p>{todo.time}</p>
-              </ListGroupItem>
-              // </div>
-            );
-          }
-          
+          // }
         })
       ) :
       (
@@ -76,22 +60,16 @@ const TodoUI = ({ todos, date, deleteTask, handleSubmit }) => {
     
   // }
   
-    return (
-      <div className="task-list">
+  return (
+    <div className="task-list">
         <Container>
           <Row>
             <Col xs="12" md={{ size: 6, offset: 3 }}>
-              {
-                todos.length ? 
-                  (
-                    <div>
-                      <h3 id="schedule">
-                        {todoDate === curr_date ? "Today" : "Upcoming"}
-                      </h3>
-                    </div>
-                  ) :
-                  null
-              }
+              <div>
+                <h3 id="schedule">
+                  {todos.length ? "My Todos" : null}
+                </h3>
+              </div>
             </Col>
           </Row>
           <Row>
@@ -121,8 +99,8 @@ const TodoUI = ({ todos, date, deleteTask, handleSubmit }) => {
             </Col>
           </Row>
         </Container>
-      </div>
-    );
+    </div>
+  );
 }
 
 export default TodoUI;
