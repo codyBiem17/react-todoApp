@@ -70,3 +70,7 @@ code {
   /* background-color: white; */
   /* color: #29323c; */
 }
+
+button#add-todo:focus{
+  box-shadow: none;
+}

@@ -12,7 +12,36 @@ class App extends Component {
         // { id: 2, task: 'read article', date: 'Aug 8, 2020', time: '8:00AM' },
         // { id: 3, task: 'search for jobs', date: 'Aug 8, 2020', time: '8:00AM' }
       ],
-      date: '9' 
+      task:'',
+      date: '',
+      time:'' 
+    }
+  }
+
+  handleChange = (e) => {
+    this.setState({
+        //set id for input field to be same as state properties above
+        // grab the id of the target element and
+        // update the state properties 
+        [e.target.id]: e.target.value
+    })
+  }
+
+  handleSubmit = (e) => {
+      e.preventDefault();
+      // console.log(this.state);
+    if (this.state.task === '' && this.state.time === '') {
+      return null
+    }
+    else {
+      this.addTodo(this.state);
+      
+      //  this.setState({
+      //     task: "",
+      //     date: "",
+      //     time: "",
+      //   });
+      
     }
   }
 
@@ -24,6 +53,8 @@ class App extends Component {
       this.setState({
         todos: newTodos
       })
+      console.log(newTodos);
+      
     }
     else {
       return null
@@ -47,8 +78,17 @@ class App extends Component {
         <h2 className="" id="task-header">
           Task Scheduler
         </h2>
-        <AddTask addTodo={this.addTodo}/>
-        <TodoUI todos={this.state.todos} date={this.state.date} deleteTask={this.deleteTask}/>
+        <AddTask
+          handleChange={this.handleChange}
+          handleSubmit={this.handleSubmit}
+          deleteTask={this.deleteTask}
+        />
+        <TodoUI
+          todos={this.state.todos}
+          date={this.state.date}
+          deleteTask={this.deleteTask}
+          handleSubmit={this.handleSubmit}
+        />
       </div>
     );
   }
