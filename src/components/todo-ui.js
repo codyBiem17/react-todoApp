@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import {
             Container, Row, Col, Button, Form, FormGroup, Input, Label,
-            ListGroup, ListGroupItem,ListGroupItemHeading, ListGroupItemText
+            ListGroup, ListGroupItem,ListGroupItemHeading
         } from "reactstrap";
 
 const TodoUI = ({ todos, deleteTask }) => {
@@ -26,12 +26,13 @@ const TodoUI = ({ todos, deleteTask }) => {
               // <div className="list-groups">
               <ListGroupItem className="my-tasks" key={todo.id}>
                 <ListGroupItemHeading>{newTodoDate}</ListGroupItemHeading>
-                <ListGroupItemText className="todo-item">
+                <div className="todo-item">
                   <Form>
                     <FormGroup check>
                       <Label check>
                         <Input
                           type="checkbox"
+                          id={todo.id}
                           checked={checked}
                           onChange={() => setChecked(!checked)}
                         />{" "}
@@ -41,7 +42,7 @@ const TodoUI = ({ todos, deleteTask }) => {
                   </Form>
                   {/* <p>{todo.date}</p> */}
                   <p>{todo.time}</p>
-                </ListGroupItemText>
+                </div>
               </ListGroupItem>
               // </div>
             );
@@ -97,7 +98,7 @@ const TodoUI = ({ todos, deleteTask }) => {
                       </FormGroup>
                     </Col>
                     <Col xs={2}>
-                      <Button color="danger" >Delete</Button>
+                      <Button color="danger" onClick={deleteTask}>Delete</Button>
                     </Col>
                   </FormGroup>
                 </Form>
