@@ -8,14 +8,8 @@ class App extends Component {
     super(props);
     this.state = {
       todos: [],
-      isChecked: false
+      checked: false
     };
-  }
-
-  toggleChange = () => {
-    this.setState({
-      isChecked: !this.state.isChecked,
-    });
   }
 
   addTodo = (newTask) => {
@@ -32,22 +26,46 @@ class App extends Component {
     }
   };
 
-  // deleteTask = (delTask) => {
-  // console.log(id)
-  // const taskLeft = this.state.todos.filter((todo) => {
-  //   return todo.id !== delTask;
-  // });
-  // this.setState({
-  //   todos: taskLeft,
-  // });
-  // console.log(filterTodo);
-  // };
-
   deleteTask = () => {
-    this.setState((prevState) => ({
-      todos: prevState.todos.filter((todo) => !todo.checked),
-    }));
+    // console.log(id)
+    const taskLeft = this.state.todos.filter((todo) => {
+      // if (todo.isChecked === false) {
+
+      // }
+      return todo.isChecked !== true;
+    });
+    this.setState({
+      todos: taskLeft,
+    });
+    // console.log(taskLeft);
   };
+
+  toggleCheckbox = (delTask) => {
+    if (delTask.isChecked === false) {
+      delTask.isChecked = true;
+    } else {
+      delTask.isChecked = false;
+    }
+  };
+
+  checkUncheckAll = (e) => {
+    // if (e.target.checked === true) {
+      // alert('select/unselect all boxes')
+      this.setState({ checked: !this.state.checked });
+      console.log(e.target.checked);
+    // }
+    
+    // 
+    // const checkUncheck = this.state.todos.map((todo) => {
+    //   if (todo.isChecked === false) {
+    //     return (todo.isChecked = true);
+    //   } else {
+    //     return (todo.isChecked = false);
+    //   }
+    // });
+    // this.setState({ todos: checkUncheck });
+  };
+
 
   render() {
     return (
@@ -56,7 +74,13 @@ class App extends Component {
           Task Scheduler
         </h2>
         <AddTask addTodo={this.addTodo} />
-        <TodoUI todos={this.state.todos} deleteTask={this.deleteTask} />
+        <TodoUI
+          todos={this.state.todos}
+          deleteTask={this.deleteTask}
+          toggleCheckbox={this.toggleCheckbox}
+          checkUncheckAll={this.checkUncheckAll}
+          isChecked={this.state.checked}
+        />
       </div>
     );
   }

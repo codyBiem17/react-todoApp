@@ -5,9 +5,10 @@ class AddTask extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      task: "",
-      date: "",
-      time: "",
+        task: "",
+        date: "",
+        time: "",
+        isChecked: false
     };
   }
 

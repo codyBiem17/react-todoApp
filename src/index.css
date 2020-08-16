@@ -71,6 +71,6 @@ code {
   /* color: #29323c; */
 }
 
-button#add-todo:focus{
+button#add-todo:focus, button#delete:focus{
   box-shadow: none;
 }

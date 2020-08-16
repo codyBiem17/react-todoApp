@@ -1,21 +1,11 @@
-import React, {useState} from 'react'
+import React from 'react'
 import {
             Container, Row, Col, Button, Form, FormGroup, Input, Label,
             ListGroup, ListGroupItem,ListGroupItemHeading
         } from "reactstrap";
 
-const TodoUI = ({ todos, deleteTask }) => {
- 
-  const [checked, setChecked] = useState(false)
-  // const curr_date = new Date().getDate();
+const TodoUI = ({ todos, deleteTask, toggleCheckbox, checkUncheckAll, checked}) => {
   
-  // let todoDate = new Date(date);
-  // todoDate = todoDate.getDate();
-  
-  
-  
-  
-
   const taskList = todos.length ?
     (
       todos.map(todo => {
@@ -32,9 +22,9 @@ const TodoUI = ({ todos, deleteTask }) => {
                       <Label check>
                         <Input
                           type="checkbox"
-                          id={todo.id}
-                          checked={checked}
-                          onChange={() => setChecked(!checked)}
+                          // id={todo.id}
+                          // checked={todo.isChecked}
+                          onChange={() => toggleCheckbox(todo)}
                         />{" "}
                         <span>{todo.task}</span>
                       </Label>
@@ -53,59 +43,53 @@ const TodoUI = ({ todos, deleteTask }) => {
         <p id="addTask">You have no task added</p>
       )
 
-  // const scheduleList = () => {
-  //   if (date !== today) {
-  //     return null
-  //   }
-  //   else {
-  //     return (
-  //       // <div>
-  //         <h3>Today-{date}</h3>
-  //       // </div>
-  //     )
-  //   }
-    
-  // }
+
   
   return (
     <div className="task-list">
-        <Container>
-          <Row>
-            <Col xs="12" md={{ size: 6, offset: 3 }}>
-              <div>
-                <h3 id="schedule">
-                  {todos.length ? "My Todos" : null}
-                </h3>
-              </div>
-            </Col>
-          </Row>
-          <Row>
-            <Col xs="12" md={{ size: 6, offset: 3 }}>
-              <ListGroup>{taskList}</ListGroup>
-            </Col>
-          </Row>
-          <Row>
-            <Col xs="12" md={{ size: 6, offset: 3 }} className="select-all">
-              {todos.length ? (
-                <Form>
-                  <FormGroup row>
-                    <Col xs={5}>
-                      <FormGroup check>
-                        <Label check>
-                          <Input type="checkbox" />
-                          <span>Select All</span>
-                        </Label>
-                      </FormGroup>
-                    </Col>
-                    <Col xs={2}>
-                      <Button color="danger" onClick={deleteTask}>Delete</Button>
-                    </Col>
-                  </FormGroup>
-                </Form>
-              ) : null}
-            </Col>
-          </Row>
-        </Container>
+      <Container>
+        <Row>
+          <Col xs="12" md={{ size: 6, offset: 3 }}>
+            <div>
+              <h3 id="schedule">{todos.length ? "My Todos" : null}</h3>
+            </div>
+          </Col>
+        </Row>
+        <Row>
+          <Col xs="12" md={{ size: 6, offset: 3 }}>
+            <ListGroup>{taskList}</ListGroup>
+          </Col>
+        </Row>
+        <Row>
+          <Col xs="12" md={{ size: 6, offset: 3 }} className="select-all">
+            {todos.length ? (
+              <Form>
+                <FormGroup row>
+                  <Col xs={8}>
+                    <FormGroup check>
+                      <Label check>
+                        <Input
+                          type="checkbox"
+                          checked={checked}
+                          onChange={checkUncheckAll}
+                        />
+                        <span value="selectUnselectAll">
+                          Select/Unselect All
+                        </span>
+                      </Label>
+                    </FormGroup>
+                  </Col>
+                  <Col xs={2}>
+                    <Button color="danger" onClick={deleteTask} id="delete">
+                      Delete
+                    </Button>
+                  </Col>
+                </FormGroup>
+              </Form>
+            ) : null}
+          </Col>
+        </Row>
+      </Container>
     </div>
   );
 }
