@@ -30,7 +30,7 @@ code {
 
 .todo-item {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 
 .form-control:focus {
@@ -51,12 +51,12 @@ code {
   font-weight: 600;
 }
 
-.my-tasks p, .my-tasks span {
+.my-tasks p {
   text-transform: capitalize;
   margin-bottom: 0.1rem;
 }
 
-.my-tasks span {
+.my-tasks p {
   font-weight: 600;
 }
 

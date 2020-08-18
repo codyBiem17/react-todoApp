@@ -8,7 +8,7 @@ class AddTask extends Component {
         task: "",
         date: "",
         time: "",
-        isChecked: false
+        // isChecked: false
     };
   }
 
