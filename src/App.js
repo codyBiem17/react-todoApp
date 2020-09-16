@@ -52,27 +52,22 @@ class App extends Component {
   deleteTask = () => {
     // console.log(id)
     const taskLeft = this.state.todos.filter((todo) => {
-      if (todo.isChecked === false) {
-        todo.isChecked = true;
-      } else {
-        todo.isChecked = false;
-      }
+      // if (todo.isChecked === false) {
+      //   todo.isChecked = true
+      // }
+      // else {
+      //   todo.isChecked = false;
+      // }
       // todo.isChecked = this.handleCheckUncheck
-      return todo.isChecked !== true;
+      return todo.isChecked !== true ? todo : null;
     });
+
     this.setState({
       todos: taskLeft,
     });
     console.log(taskLeft);
   };
 
-  toggleCheckbox = (delTask) => {
-    if (delTask.isChecked === false) {
-      delTask.isChecked = true;
-    } else {
-      delTask.isChecked = false;
-    }
-  };
 
   handleCheckUncheck = (e) => {
     debugger;

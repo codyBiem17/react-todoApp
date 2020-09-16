@@ -1,3 +1,6 @@
+// I like to leave my commented code to show my
+// coding progress with many trials
+
 import React, { Component } from "react";
 import {
   Container,
