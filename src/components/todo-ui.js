@@ -1,18 +1,28 @@
-import React from 'react'
+import React from "react";
 import {
-            Container, Row, Col, Button, Form, FormGroup, Input, Label,
-            ListGroup, ListGroupItem,ListGroupItemHeading
-        } from "reactstrap";
+  Container,
+  Row,
+  Col,
+  Button,
+  Form,
+  FormGroup,
+  Input,
+  Label,
+  ListGroup,
+  ListGroupItem,
+  ListGroupItemHeading,
+} from "reactstrap";
 
 const TodoUI = ({
   todos,
   deleteTask,
   toggleCheckbox,
   allCheckedUnchecked,
-  checkUncheckAll,
-  checked,
   handleCheckUncheck,
 }) => {
+  // const [isChecked, setIsChecked] = useState(false)
+  // const handleChange = () => setIsChecked(!isChecked)
+
   const taskList = todos.length ? (
     todos.map((todo) => {
       let newTodoDate = new Date(todo.date);
@@ -28,8 +38,9 @@ const TodoUI = ({
                 <Input
                   type="checkbox"
                   id={todo.id}
-                  checked={checked}
-                  onChange={handleCheckUncheck}
+                  name={todo.name}
+                  checked={todo.isChecked}
+                  onChange={(e) => handleCheckUncheck(e)}
                 />{" "}
               </FormGroup>
               <p>{todo.task}</p>
@@ -71,9 +82,9 @@ const TodoUI = ({
                       <Label check>
                         <Input
                           type="checkbox"
-                          id="check-uncheck-all"
+                          name="checkUncheckAll"
                           checked={allCheckedUnchecked}
-                          onChange={checkUncheckAll}
+                          onChange={(e) => handleCheckUncheck(e)}
                         />
                         <span value="selectUnselectAll">
                           Select/Unselect All

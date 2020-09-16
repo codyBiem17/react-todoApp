@@ -1,14 +1,22 @@
-import React, { Component } from 'react'
-import { Container, Row, Col, Button, Form, FormGroup, Input } from "reactstrap";
+import React, { Component } from "react";
+import {
+  Container,
+  Row,
+  Col,
+  Button,
+  Form,
+  FormGroup,
+  Input,
+} from "reactstrap";
 
 class AddTask extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        task: "",
-        date: "",
-        time: "",
-        // isChecked: false
+      task: "",
+      date: "",
+      time: "",
+      // isChecked: false
     };
   }
 
@@ -24,18 +32,15 @@ class AddTask extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     // console.log(this.state);
-    if (this.state.task === "" && this.state.time === "")
-    {
+    if (this.state.task === "" && this.state.time === "") {
       return null;
-    }
-    else
-    {
-
+    } else {
       this.props.addTodo(this.state);
       this.setState({
         task: "",
         date: "",
         time: "",
+        // isChecked: false
       });
     }
   };
@@ -66,29 +71,29 @@ class AddTask extends Component {
                   </Col>
                 </FormGroup>
                 <FormGroup row>
-                    <Col xs="7" className="form-columns">
-                        <Input 
-                            onChange={this.handleChange} 
-                            type="date" 
-                            id="date" 
-                            value={this.state.date} 
-                        />
-                    </Col>
-                    <Col xs="5" className="form-columns">
-                        <Input
-                            onChange={this.handleChange}
-                            type="select"
-                            name="select"
-                            id="time"
-                            value={this.state.time}
-                        >
-                        <option>Select Time</option>
-                        <option>5:00am</option>
-                        <option>9:00am</option>
-                        <option>4:00pm</option>
-                        {/* <option>5</option> */}
-                        </Input>
-                    </Col>
+                  <Col xs="7" className="form-columns">
+                    <Input
+                      onChange={this.handleChange}
+                      type="date"
+                      id="date"
+                      value={this.state.date}
+                    />
+                  </Col>
+                  <Col xs="5" className="form-columns">
+                    <Input
+                      onChange={this.handleChange}
+                      type="select"
+                      name="select"
+                      id="time"
+                      value={this.state.time}
+                    >
+                      <option>Select Time</option>
+                      <option>5:00am</option>
+                      <option>9:00am</option>
+                      <option>4:00pm</option>
+                      {/* <option>5</option> */}
+                    </Input>
+                  </Col>
                 </FormGroup>
                 <FormGroup row>
                   <Col xs="5" className="form-columns">
